@@ -1,34 +1,46 @@
 import React from "react";
-import { Image, View, Text, StyleSheet, Dimensions } from "react-native";
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
 function Card({ imageUri, title, subTitle }) {
+  const navigate = useNavigation();
+
   return (
-    <View style={styles.card}>
-      <Image
-        source={{
-          uri: imageUri,
-        }}
-        style={styles.image}
-      />
-      <View style={styles.like_box}>
-        <AntDesign name="heart" size={20} color="red" />
-        <Text style={{ color: "#fff", marginLeft: 5 }}>1123</Text>
-      </View>
-      <View style={styles.description}>
-        <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-          {title}
-        </Text>
+    <TouchableWithoutFeedback onPress={() => navigate.navigate("Detail")}>
+      <View style={styles.card}>
+        <Image
+          source={{
+            uri: imageUri,
+          }}
+          style={styles.image}
+        />
+        <View style={styles.like_box}>
+          <AntDesign name="heart" size={20} color="red" />
+          <Text style={{ color: "#fff", marginLeft: 5 }}>1123</Text>
+        </View>
+        <View style={styles.description}>
+          <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+            {title}
+          </Text>
 
-        <View style={styles.status}>
-          <Text style={styles.title}>$ {subTitle}</Text>
+          <View style={styles.status}>
+            <Text style={styles.title}>$ {subTitle}</Text>
 
-          <AntDesign name="hearto" size={24} color="black" />
+            <AntDesign name="hearto" size={24} color="black" />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
