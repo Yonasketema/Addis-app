@@ -9,6 +9,10 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const { width, height } = Dimensions.get("window");
 
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#fff",
     overflow: "hidden",
-    height: 250,
+    height: heightPercentageToDP(41),
     marginRight: 20,
   },
   description: {
