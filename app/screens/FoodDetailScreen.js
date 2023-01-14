@@ -3,6 +3,11 @@ import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
+
 import Screen from "../components/Screen";
 
 function FoodDetailScreen() {
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 300,
+    height: heightPercentageToDP(52),
   },
   description: {
     padding: 15,
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "#fff",
     bottom: 0,
-    height: "50%",
+    height: heightPercentageToDP(52),
   },
   navigator: {
     flexDirection: "row",
