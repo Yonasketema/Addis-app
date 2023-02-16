@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppIntroSlider from "react-native-app-intro-slider";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Button,
-} from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 import FoodDetailScreen from "./app/screens/FoodDetailScreen";
 import HomeScreen from "./app/screens/HomeScreen";
