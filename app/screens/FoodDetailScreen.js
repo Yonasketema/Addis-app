@@ -22,10 +22,7 @@ function FoodDetailScreen() {
             uri: "http://cdn.cnn.com/cnnnext/dam/assets/190205150343-kitfo.jpg",
           }}
         ></Image>
-        <View style={styles.like_box}>
-          <AntDesign name="heart" size={20} color="red" />
-          <Text style={{ color: "#fff", marginLeft: 5 }}>1123</Text>
-        </View>
+
         <View style={styles.description}>
           <View style={styles.titlebar}>
             <Text style={styles.title} numberOfLines={2}>
@@ -63,16 +60,6 @@ function FoodDetailScreen() {
   );
 }
 const styles = StyleSheet.create({
-  like_box: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    position: "absolute",
-    top: 20,
-    right: 20,
-    backgroundColor: "rgba(0,0,0,0.4)",
-    padding: 10,
-    borderRadius: 10,
-  },
   image: {
     width: "100%",
     height: heightPercentageToDP(52),
