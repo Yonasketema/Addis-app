@@ -1,9 +1,11 @@
 import React from "react";
-import { FlatList, StatusBar, Text, TextInput, View } from "react-native";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import Card from "../components/Card";
+import ProCard from "../components/ProCard";
 import Screen from "../components/Screen";
 import SearchBar from "../components/SearchBar";
 import SearchName from "../components/SearchName";
+import AppText from "../components/Text";
 
 const list = [
   {
@@ -63,49 +65,54 @@ const names = ["shiro", "firir", "tibs", "enkulal", "beyeaynet", "doro"];
 
 function HomeScreen(props) {
   return (
-    <Screen>
-      <View
-        style={{
-          marginLeft: 20,
-          marginVertical: 10,
-        }}
-      >
-        <SearchBar />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Screen>
+        <View
+          style={{
+            marginLeft: 20,
+            marginVertical: 10,
+          }}
+        >
+          <SearchBar />
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={names}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => <SearchName text={item} />}
+          />
+        </View>
+
+        <AppText>NearBy Food</AppText>
+
         <FlatList
+          contentContainerStyle={{ marginLeft: 20 }}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={names}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => <SearchName text={item} />}
+          data={list}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              imageUri={item.imageUri}
+              title={item.title}
+              subTitle={item.subTitle}
+            />
+          )}
         />
-      </View>
+        <AppText>Popular</AppText>
 
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 18,
-          marginHorizontal: 20,
-          marginVertical: 12,
-        }}
-      >
-        NearBy Food
-      </Text>
-
-      <FlatList
-        contentContainerStyle={{ marginLeft: 20 }}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={list}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <Card
-            imageUri={item.imageUri}
-            title={item.title}
-            subTitle={item.subTitle}
-          />
-        )}
-      />
-    </Screen>
+        {list.map((food) => {
+          return (
+            <ProCard
+              key={food.id}
+              imageUri={food.imageUri}
+              title={food.title}
+              subTitle={food.subTitle}
+            />
+          );
+        })}
+      </Screen>
+    </ScrollView>
   );
 }
 
