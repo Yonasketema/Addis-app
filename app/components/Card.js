@@ -7,8 +7,8 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -28,10 +28,6 @@ function Card({ imageUri, title, subTitle }) {
           }}
           style={styles.image}
         />
-        <View style={styles.like_box}>
-          <AntDesign name="heart" size={20} color="red" />
-          <Text style={{ color: "#fff", marginLeft: 5 }}>1123</Text>
-        </View>
         <View style={styles.description}>
           <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
             {title}
@@ -51,11 +47,12 @@ function Card({ imageUri, title, subTitle }) {
 const styles = StyleSheet.create({
   card: {
     width: width / 1.7,
-    borderRadius: 15,
+    borderRadius: 21,
     backgroundColor: "#fff",
     overflow: "hidden",
     height: heightPercentageToDP(41),
     marginRight: 20,
+    overflow: "hidden",
   },
   description: {
     paddingHorizontal: 10,
@@ -64,6 +61,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: height / 4,
     marginBottom: 10,
+    borderRadius: 21,
   },
   title: {
     fontSize: 15,
@@ -76,16 +74,6 @@ const styles = StyleSheet.create({
   status: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  like_box: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    position: "absolute",
-    top: 20,
-    left: 20,
-    backgroundColor: "rgba(0,0,0,0.4)",
-    padding: 10,
-    borderRadius: 10,
   },
 });
 export default Card;
