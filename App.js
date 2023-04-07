@@ -42,13 +42,3 @@ export default function App() {
     </>
   );
 }
-
-const slides = [
-  {
-    key: "s1",
-    title: "Addis Food & Restorant",
-    text: "Enjoy Great offers on our all services",
-    image: require("./app/assets/4ufood.png"),
-    backgroundColor: "#DDD",
-  },
-];
