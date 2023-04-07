@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AppIntroSlider from "react-native-app-intro-slider";
-import { StyleSheet, View, Text, Image } from "react-native";
 
 import FoodDetailScreen from "./app/screens/FoodDetailScreen";
 import HomeScreen from "./app/screens/HomeScreen";
+import IntroScreen from "./app/screens/IntroScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,73 +37,11 @@ export default function App() {
           <StackNavigator />
         </NavigationContainer>
       ) : (
-        <AppIntroSlider
-          data={slides}
-          renderItem={RenderItem}
-          onDone={onDone}
-          showSkipButton={true}
-          onSkip={onSkip}
-        />
+        <IntroScreen onDone={onDone} onSkip={onSkip} />
       )}
     </>
   );
 }
-
-const RenderItem = ({ item }) => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: item.backgroundColor,
-        alignItems: "center",
-        justifyContent: "space-around",
-        paddingBottom: 100,
-      }}
-    >
-      <Text style={styles.introTitleStyle}>{item.title}</Text>
-      <Image style={styles.introImageStyle} source={item.image} />
-      <Text style={styles.introTextStyle}>{item.text}</Text>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    padding: 10,
-    justifyContent: "center",
-  },
-  titleStyle: {
-    padding: 10,
-    textAlign: "center",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  paragraphStyle: {
-    padding: 20,
-    textAlign: "center",
-    fontSize: 16,
-  },
-  introImageStyle: {
-    width: "100%",
-    height: 200,
-  },
-  introTextStyle: {
-    fontSize: 18,
-    color: "#000",
-    textAlign: "center",
-    paddingVertical: 30,
-  },
-  introTitleStyle: {
-    fontSize: 25,
-    color: "#000",
-    textAlign: "center",
-    marginBottom: 16,
-    fontWeight: "bold",
-  },
-});
 
 const slides = [
   {
