@@ -5,7 +5,7 @@ import AppIntroSlider from "react-native-app-intro-slider";
 const slides = [
   {
     key: "s1",
-    title: "Addis Food & Restorant",
+    title: "Addis Food & Restaurant",
     text: "Enjoy Great offers on our all services",
     image: require("./../assets/4ufood.png"),
     backgroundColor: "#DDD",
