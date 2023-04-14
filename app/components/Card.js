@@ -16,27 +16,52 @@ import {
 
 const { width, height } = Dimensions.get("window");
 
-function Card({ imageUri, title, subTitle }) {
+import { Ionicons } from "@expo/vector-icons";
+import ProCard from "./ProCard";
+
+function Card({ imageUri, title, subTitle, proCard }) {
   const navigate = useNavigation();
 
   return (
     <TouchableWithoutFeedback onPress={() => navigate.navigate("Detail")}>
-      <View style={styles.card}>
+      <View style={[styles.card, { width: proCard ? "100%" : width / 1.6 }]}>
         <Image
           source={{
             uri: imageUri,
           }}
           style={styles.image}
         />
+
         <View style={styles.description}>
-          <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-            {title}
-          </Text>
+          {proCard ?? (
+            <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+              {title}
+            </Text>
+          )}
 
           <View style={styles.status}>
-            <Text style={styles.title}>$ {subTitle}</Text>
+            {proCard ?? (
+              <Text
+                style={{ color: "#964b00", fontWeight: "700", marginBottom: 6 }}
+              >
+                $ {subTitle}
+              </Text>
+            )}
 
-            <AntDesign name="hearto" size={24} color="black" />
+            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+              <Ionicons name="restaurant-outline" size={15} color="#999" />
+              <Text
+                style={{
+                  color: "#999",
+                  fontWeight: "700",
+                  marginBottom: 6,
+                  marginLeft: 5,
+                  fontSize: 14,
+                }}
+              >
+                Habesha restaurant
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -46,16 +71,16 @@ function Card({ imageUri, title, subTitle }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: width / 1.7,
     borderRadius: 21,
     backgroundColor: "#fff",
     overflow: "hidden",
-    height: heightPercentageToDP(41),
     marginRight: 20,
     overflow: "hidden",
+    marginVertical: 12,
+    paddingBottom: 10,
   },
   description: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 18,
   },
   image: {
     width: "100%",
@@ -67,13 +92,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     textTransform: "capitalize",
-    marginBottom: 10,
-    minHeight: 40,
+    marginBottom: 3,
     color: "#444",
   },
-  status: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
+  status: {},
 });
 export default Card;
