@@ -101,7 +101,7 @@ function HomeScreen(props) {
         />
         <AppText>Popular</AppText>
 
-        {list.map((food) => {
+        {/* {list.map((food) => {
           return (
             <ProCard
               key={food.id}
@@ -110,7 +110,22 @@ function HomeScreen(props) {
               subTitle={food.subTitle}
             />
           );
-        })}
+        })} */}
+
+        <FlatList
+          contentContainerStyle={{ marginHorizontal: 20 }}
+          showsHorizontalScrollIndicator={false}
+          data={list}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              imageUri={item.imageUri}
+              title={item.title}
+              subTitle={item.subTitle}
+              proCard
+            />
+          )}
+        />
       </Screen>
     </ScrollView>
   );
