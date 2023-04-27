@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get("window");
 import { Ionicons } from "@expo/vector-icons";
 import ProCard from "./ProCard";
 
-function Card({ imageUri, title, subTitle, proCard }) {
+function Card({ imageUri, title, subTitle, proCard, restaurant }) {
   const navigate = useNavigation();
 
   return (
@@ -59,7 +59,7 @@ function Card({ imageUri, title, subTitle, proCard }) {
                   fontSize: 14,
                 }}
               >
-                Habesha restaurant
+                {restaurant}
               </Text>
             </View>
           </View>
