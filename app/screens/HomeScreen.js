@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+
+import * as Location from "expo-location";
+
 import Card from "../components/Card";
 import ProCard from "../components/ProCard";
 import Screen from "../components/Screen";
@@ -13,19 +23,62 @@ const names = ["shiro", "firir", "tibs", "enkulal", "beyeaynet", "doro"];
 
 function HomeScreen(props) {
   const [list, setNearbyfood] = useState([]);
+  const [error, setError] = useState();
+  const [errorMsg, setErrorMsg] = useState();
+  const [loading, setLoading] = useState();
+  const [{ latitude, longitude, granted }, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+    granted: false,
+  });
+
+  const getUserLocation = async () => {
+    const { granted } = await Location.requestBackgroundPermissionsAsync();
+    if (!granted) return;
+    const {
+      coords: { latitude, longitude },
+    } = await Location.getLastKnownPositionAsync();
+
+    setLocation({ latitude, longitude, granted: true });
+  };
 
   useEffect(() => {
-    loadNearbyfood();
-  }, []);
+    getUserLocation();
 
-  const loadNearbyfood = async () => {
-    const response = await nearbyfoodApi.nearbyfood();
-    setNearbyfood(response.data.foods);
+    if (granted) {
+      loadNearbyfood({ latitude, longitude });
+    }
+  }, [latitude]);
+
+  const loadNearbyfood = async ({ latitude, longitude }) => {
+    setLoading(true);
+    try {
+      const response = await nearbyfoodApi.nearbyfood(latitude, longitude);
+
+      setLoading(false);
+      setNearbyfood(response.data.foods);
+    } catch (error) {
+      setLoading(false);
+      setErrorMsg(error.toJSON().message);
+      return setError(true);
+    }
+
+    setError(false);
   };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Screen>
+        {error && (
+          <>
+            <Text>{errorMsg}</Text>
+
+            <AppText>couldn't get the data</AppText>
+            <Button title="Retry " onPress={loadNearbyfood}></Button>
+          </>
+        )}
+
+        <ActivityIndicator size="large" animating={loading} />
         <View
           style={{
             marginLeft: 20,
