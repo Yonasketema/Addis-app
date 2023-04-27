@@ -1,11 +1,11 @@
 import apiClient from "./client";
 
-const endpoint =
-  "/food/nearby?lat=39.51955439923884&log=9.667288506425242&foodname";
+const endpoint = "/food/nearby";
 
 //config lat ? log
 
-const nearbyfood = () => apiClient.get(endpoint);
+const nearbyfood = (latitude, longitude) =>
+  apiClient.get(`${endpoint}?lat=${latitude}&log=${longitude}`);
 
 export default {
   nearbyfood,
