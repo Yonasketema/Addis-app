@@ -8,16 +8,10 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen";
 
 const { width, height } = Dimensions.get("window");
 
 import { Ionicons } from "@expo/vector-icons";
-import ProCard from "./ProCard";
 
 function Card({ imageUri, title, subTitle, proCard, restaurant }) {
   const navigate = useNavigation();
