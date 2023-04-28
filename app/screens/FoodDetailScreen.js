@@ -41,16 +41,7 @@ function FoodDetailScreen() {
             an hour.
           </Text>
           <View style={{ position: "absolute", bottom: 10, right: 10 }}>
-            <View
-              style={{
-                backgroundColor: "black",
-                width: 80,
-                height: 80,
-                borderRadius: 40,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <View style={styles.nav_icon_box}>
               <Feather name="navigation" size={40} color="#fff" />
             </View>
           </View>
@@ -77,6 +68,14 @@ const styles = StyleSheet.create({
   navigator: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  nav_icon_box: {
+    backgroundColor: "black",
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    justifyContent: "center",
     alignItems: "center",
   },
   title: {
